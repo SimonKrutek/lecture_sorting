@@ -64,6 +64,18 @@ def insertion_sort(number_array):
     :param number_array: list with numeric array
     :return: sorted numeric array
     """
+    n = len(number_array)
+    for i in range(1,n):
+        key = number_array[i]
+        j = i - 1
+        while j >= 0 and number_array[j] > key:
+            number_array[j+1] = number_array[j]
+            j = j-1
+        number_array[j+1] = key
+    return number_array
+
+
+
 def main():
     data = read_data("numbers.csv")
     print(data)
@@ -71,8 +83,11 @@ def main():
     print(sorted_num_arr)
     sorted_bubble_arr = bubble_sort([88, 36, 21, 54, 99, 1, 81, 18, 21, 36, 61])
     print(sorted_bubble_arr)
+    sorted_insertion = insertion_sort([88, 36, 21, 54, 99, 1, 81, 18, 21, 36, 61])
+    print(sorted_insertion)
     pass
 
 
 if __name__ == '__main__':
     main()
+
