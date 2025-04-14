@@ -1,5 +1,6 @@
 import csv
 import os
+import numpy
 
 
 def read_data(file_name):
@@ -22,9 +23,54 @@ def read_data(file_name):
                     data[header].append(int(value))
     return data
 
+def selection_sort(number_array, direction = "ascending"):
+    """
+
+    :param list number_array: list numeric array
+    :param str direction: string indicating sorting directions: ascending ,descending
+    :return: sorted numeric array
+    """
+    n = len(number_array)
+    for i in range(n):
+        min_max_i = i
+        for j in range(i+1 , n):
+            if direction == "ascending":
+                if number_array[j] < number_array[min_max_i]:
+                    min_max_i = j
+            elif direction == "descending":
+                if number_array[j] > number_array[min_max_i]:
+                    min_max_i = j
+        number_array[i],number_array[min_max_i] = number_array[min_max_i] , number_array[i]
+    return number_array
+
+def bubble_sort(number_array):
+    """
+
+    :param list number_array: list with numeric array
+    :return: sorted numeric array
+    """
+    n = len(number_array)
+    for i in range(n - 1):
+        for ii in range(n - i - 1):
+            if number_array[ii] > number_array[ii+1]:
+                number_array[ii], number_array[ii+1] = number_array[ii+1], number_array[ii]
+
+    return number_array
+
+
+def insertion_sort(number_array):
+    """
+
+    :param number_array: list with numeric array
+    :return: sorted numeric array
+    """
 def main():
     data = read_data("numbers.csv")
     print(data)
+    sorted_num_arr = selection_sort([88, 36, 21, 54, 99, 1, 81, 18, 21, 36, 61])
+    print(sorted_num_arr)
+    sorted_bubble_arr = bubble_sort([88, 36, 21, 54, 99, 1, 81, 18, 21, 36, 61])
+    print(sorted_bubble_arr)
     pass
 
 
